@@ -43,7 +43,7 @@ button.on{background:#5ee08a}
  </div>
  <div id="fade"><div id="tip"></div></div><div id="flash"></div>
  <div id="dbgPanel"><div class="vw"><video id="vid" playsinline muted></video><canvas id="ov" width="640" height="480"></canvas></div><pre id="dtxt"></pre></div>
- <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v4</div></div>
+ <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v5</div></div>
  <div class="panel" id="pause" hidden><h1 id="pTitle"></h1><div class="lg"></div><button id="resBtn"></button><button id="quitBtn"></button></div>
  <div class="panel" id="end" hidden><h1 id="eTitle"></h1><div id="eStats"></div><button id="againBtn"></button></div>
 </div>
@@ -56,13 +56,13 @@ let lang='en';
 /* ---------- TEXT ---------- */
 const UI={
 en:{title:'SUPER FIXER',sub:'Fix the building. Learn as you go.',start:'START DAY',pause:'PAUSE',resume:'RESUME',quit:'END DAY',paused:'PAUSED',load:'Loading hand tracking...',camErr:'Camera unavailable. Allow camera access (HTTPS or localhost) and reload.',phone:'TASKS',floor:'Floor',none:'No tasks yet...',
-hintRoom:'"Call me" hand = check phone | Open palm + rotate = turn around',
+hintRoom:'"Call me" hand = check phone | Point left/right = turn',
 hintArr:'Switch off the power/water first | Thumbs up = SNAP into the room | "Call me" = phone',
 hintScene:'*SNAP!* Task scene comes in the next build | R = back to your room (test)',
 warn:{water:'WARNING: Turn OFF the water valve first!',power:'WARNING: Switch OFF the power at the breaker first!',none:'Wear gloves and work carefully.'},
 note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP'},
 ms:{title:'SUPER FIXER',sub:'Baiki bangunan. Belajar sambil bekerja.',start:'MULAKAN HARI',pause:'JEDA',resume:'SAMBUNG',quit:'TAMAT HARI',paused:'DIJEDA',load:'Memuatkan penjejakan tangan...',camErr:'Kamera tidak tersedia. Benarkan akses kamera (HTTPS atau localhost) dan muat semula.',phone:'TUGASAN',floor:'Tingkat',none:'Belum ada tugasan...',
-hintRoom:'Tangan "call me" = semak telefon | Tapak tangan terbuka + putar = berpusing',
+hintRoom:'Tangan "call me" = semak telefon | Tunjuk kiri/kanan = berpusing',
 hintArr:'Matikan suis/air dahulu | Ibu jari ke atas = PETIK JARI masuk bilik | "Call me" = telefon',
 hintScene:'*PETIK!* Babak tugasan ada pada versi seterusnya | R = kembali ke bilik (ujian)',
 warn:{water:'AMARAN: Matikan injap air dahulu!',power:'AMARAN: Matikan bekalan elektrik di pemutus litar dahulu!',none:'Pakai sarung tangan dan berhati-hati.'},
@@ -183,15 +183,15 @@ function handle(s,l){const h=S[s],g=classify(l);
  h.cx=h.vis?h.cx+(tx-h.cx)*.5:tx;h.cy=h.vis?h.cy+(ty-h.cy)*.5:ty;h.vis=true;
  const a=Math.atan2(l[9].y-l[0].y,-(l[9].x-l[0].x));
  if(h.pa!==null&&h.st===g){let dA=a-h.pa;if(dA>Math.PI)dA-=2*Math.PI;if(dA<-Math.PI)dA+=2*Math.PI;
-  if(g==='open'&&!phoneOpen&&['room','arrived','scene'].includes(state))yaw-=dA*1.4; // open palm rotation = turn around
   if(g==='fist')h.wr+=dA*180/Math.PI}
  if(g!=='fist')h.wr=0;h.pa=a;
+ h.turn=0;if(h.st==='point'){const dx=l[5].x-l[8].x,dy=l[8].y-l[5].y;if(Math.abs(dx)>Math.abs(dy)*1.5&&Math.abs(dx)>.06)h.turn=dx>0?-1:1} // point left/right = turn
  const c=$('c'+s);c.style.display='block';c.style.left=h.cx+'px';c.style.top=h.cy+'px';c.className='cur'+(h.st==='pinch'?' p':'')}
 const ov=$('ov').getContext('2d');
 function processHands(res){
  const hs=res.landmarks.map(l=>({l,x:1-l[0].x})).sort((a,b)=>a.x-b.x),seen=[0,0];
  hs.forEach((h,i)=>{const s=hs.length===2?i:(h.x<.5?0:1);seen[s]=1;handle(s,h.l)});
- [0,1].forEach(s=>{if(!seen[s]){Object.assign(S[s],{vis:false,g:'none',cnt:0,st:'none',pa:null,wr:0});$('c'+s).style.display='none'}});
+ [0,1].forEach(s=>{if(!seen[s]){Object.assign(S[s],{turn:0,vis:false,g:'none',cnt:0,st:'none',pa:null,wr:0});$('c'+s).style.display='none'}});
  if(phoneOpen)document.querySelectorAll('.tk').forEach(e=>e.classList.toggle('hv',[0,1].some(s=>hover(s)===+e.dataset.id)));
  ov.clearRect(0,0,640,480);ov.fillStyle='#0f0';res.landmarks.forEach(l=>l.forEach(p=>ov.fillRect(p.x*640-3,p.y*480-3,6,6)));
  const book=S[0].st==='open'&&S[1].st==='open'&&hs.length===2&&Math.abs(hs[0].l[0].x-hs[1].l[0].x)<.3;
@@ -203,6 +203,7 @@ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;
  if(lm&&$('vid').readyState>=2&&$('vid').currentTime!==lastVT){lastVT=$('vid').currentTime;processHands(lm.detectForVideo($('vid'),now))}
  if(running()){tLeft-=dt;nextSpawn-=dt;if(nextSpawn<=0){spawn();nextSpawn=10+Math.random()*20}
   if(tLeft<=0){tLeft=0;endDay()}$('timer').textContent=`${Math.floor(tLeft/60)}:${String(Math.floor(tLeft%60)).padStart(2,'0')}`}
+ if(running()&&!phoneOpen&&['room','arrived','scene'].includes(state))yaw+=Math.max(-1,Math.min(1,S[0].turn+S[1].turn))*1.6*dt;
  cam.rotation.y=yaw;if(prob.visible)prob.scale.setScalar(1+.15*Math.sin(now/200));R.render(scene,cam);requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 
