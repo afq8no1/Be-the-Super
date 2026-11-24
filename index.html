@@ -28,7 +28,7 @@ button.on{background:#5ee08a}
 .panel{position:absolute;inset:0;background:#0d0d18ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2em;text-align:center;line-height:1.8}
 .panel[hidden],[hidden]{display:none!important}
 .panel h1{font-size:2.6em;margin:0;color:#ffd23f}
-#dbg{position:absolute;bottom:1%;left:1%;width:22%;background:#000b;font-size:.5em;line-height:1.5;display:none}
+#dbg{position:absolute;z-index:9;bottom:1%;left:1%;width:28%;background:#000b;font-size:.5em;line-height:1.5;display:none}
 .vw{position:relative;transform:scaleX(-1)}.vw video,.vw canvas{width:100%;display:block}.vw canvas{position:absolute;inset:0}
 #dtxt{margin:.4em;white-space:pre-wrap}
 </style>
@@ -43,7 +43,7 @@ button.on{background:#5ee08a}
  </div>
  <div id="fade"><div id="tip"></div></div><div id="flash"></div>
  <div id="dbg"><div class="vw"><video id="vid" playsinline muted></video><canvas id="ov" width="640" height="480"></canvas></div><pre id="dtxt"></pre></div>
- <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg"></div></div>
+ <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v3</div></div>
  <div class="panel" id="pause" hidden><h1 id="pTitle"></h1><div class="lg"></div><button id="resBtn"></button><button id="quitBtn"></button></div>
  <div class="panel" id="end" hidden><h1 id="eTitle"></h1><div id="eStats"></div><button id="againBtn"></button></div>
 </div>
@@ -210,12 +210,15 @@ requestAnimationFrame(frame);
 $('startBtn').onclick=async()=>{
  $('startBtn').disabled=true;$('mMsg').textContent=t('load');
  let step='camera';
- try{const v=$('vid');v.srcObject=await navigator.mediaDevices.getUserMedia({video:true});await v.play();
+ try{if(!navigator.mediaDevices)throw{name:'InsecurePage',message:'page is on '+location.protocol+' (needs https or localhost)'};
+  const v=$('vid');v.srcObject=await navigator.mediaDevices.getUserMedia({video:true});await v.play();
+  $('dbg').style.display='block';$('mMsg').textContent='Camera OK. '+t('load');
   step='model';
   const fs=await FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14/wasm');
   const mk=dl=>HandLandmarker.createFromOptions(fs,{baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task',delegate:dl},runningMode:'VIDEO',numHands:2});
   try{lm=await mk('GPU')}catch(g){console.warn('GPU failed, using CPU',g);lm=await mk('CPU')}
   $('dbg').style.display='block';startDay()}
- catch(e){console.error(e);$('mMsg').textContent=(step==='camera'?t('camErr'):'Hand tracking failed to load: ')+' ['+(e.name||'')+' '+(e.message||e)+']';$('startBtn').disabled=false}};
+ catch(e){console.error(e);const H={NotAllowedError:'Camera is blocked. Click the camera/lock icon in the address bar, set Camera to Allow, reload. Also check Windows/Mac camera privacy settings for your browser.',NotFoundError:'No camera found.',NotReadableError:'Camera is in use by another app/tab (Zoom, Teams, etc.). Close it and retry.',InsecurePage:'Open the https:// link, not a downloaded file.'};
+  $('mMsg').textContent=(step==='camera'?'CAMERA ERROR: '+(H[e.name]||''):'HAND TRACKING FAILED: ')+' ['+(e.name||'')+' '+(e.message||e)+']';$('startBtn').disabled=false}};
 const fit=()=>stage.style.fontSize=stage.clientWidth/90+'px';addEventListener('resize',fit);fit();refresh();
 </script></body></html>
