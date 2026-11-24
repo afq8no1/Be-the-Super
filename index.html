@@ -12,7 +12,7 @@ canvas.game{position:absolute;inset:0;width:100%;height:100%;image-rendering:pix
 button{font-family:inherit;font-size:1em;background:#ffd23f;border:3px solid #000;padding:.7em 1em;cursor:pointer;pointer-events:auto}
 button.on{background:#5ee08a}
 #pauseBtn{position:absolute;top:2%;left:2%}
-#hint{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);width:80%;text-align:center;font-size:.8em;line-height:1.6;background:#000a;padding:.6em}
+#hint{position:absolute;bottom:2%;left:50%;transform:translateX(-50%);width:46%;text-align:center;font-size:.7em;line-height:1.6;background:#000a;padding:.6em}
 #note{position:absolute;top:2%;right:2%;width:30%;background:#fff8dc;color:#222;border:3px solid #000;padding:.8em;font-size:.75em;line-height:1.7}
 #note h4{margin:0 0 .6em;font-size:1em;color:#a33}
 #note ol{margin:0;padding-left:1.4em}
@@ -28,22 +28,30 @@ button.on{background:#5ee08a}
 .panel{position:absolute;inset:0;background:#0d0d18ee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2em;text-align:center;line-height:1.8}
 .panel[hidden],[hidden]{display:none!important}
 .panel h1{font-size:2.6em;margin:0;color:#ffd23f}
-#dbgPanel{position:absolute;z-index:9;bottom:1%;left:1%;width:28%;background:#000b;font-size:.5em;line-height:1.5;display:none}
+#dbgPanel{position:absolute;z-index:9;bottom:1%;left:1%;width:22%;background:#000b;font-size:.5em;line-height:1.5;display:none}
 .vw{position:relative;transform:scaleX(-1)}.vw video,.vw canvas{width:100%;display:block}.vw canvas{position:absolute;inset:0}
 #dtxt{margin:.4em;white-space:pre-wrap}
+.tk.hv,.tl.hv{border-color:#5ee08a;background:#3b5a3f}
+#score{position:absolute;top:9.5%;left:50%;transform:translateX(-50%);font-size:.7em;background:#000a;padding:.4em .8em}
+#say{position:absolute;top:16%;left:50%;transform:translateX(-50%);max-width:50%;background:#fff;color:#111;border:3px solid #000;padding:.7em 1em;font-size:.8em;line-height:1.6;text-align:center}
+#act{position:absolute;bottom:13%;left:27%;width:46%;background:#000c;border:2px solid #ffd23f;padding:.6em;font-size:.7em;line-height:1.7;text-align:center}
+.bar{height:.9em;background:#333;margin-top:.4em;border:2px solid #fff}.bar i{display:block;height:100%;background:#5ee08a}
+#tbox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:50%;background:#1b1b2b;border:4px solid #5ee08a;padding:1em;font-size:.8em}
+#tbox h3{margin:0 0 .8em;text-align:center;color:#5ee08a}.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:.5em}
+.tl{background:#2d3a5a;border:3px solid #555;padding:.9em .4em;text-align:center;line-height:1.4}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 </head><body>
 <div id="stage">
  <div id="hud" hidden>
   <div id="timer">5:00</div><button id="pauseBtn"></button>
-  <div id="warn" hidden></div><div id="note" hidden></div><div id="phone" hidden></div>
+  <div id="warn" hidden></div><div id="note" hidden></div><div id="phone" hidden></div><div id="tbox" hidden></div><div id="act" hidden></div><div id="say" hidden></div><div id="score"></div>
   <div id="hint"></div>
   <div class="cur" id="c0"></div><div class="cur" id="c1"></div>
  </div>
  <div id="fade"><div id="tip"></div></div><div id="flash"></div>
  <div id="dbgPanel"><div class="vw"><video id="vid" playsinline muted></video><canvas id="ov" width="640" height="480"></canvas></div><pre id="dtxt"></pre></div>
- <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v5</div></div>
+ <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v6</div></div>
  <div class="panel" id="pause" hidden><h1 id="pTitle"></h1><div class="lg"></div><button id="resBtn"></button><button id="quitBtn"></button></div>
  <div class="panel" id="end" hidden><h1 id="eTitle"></h1><div id="eStats"></div><button id="againBtn"></button></div>
 </div>
@@ -58,15 +66,15 @@ const UI={
 en:{title:'SUPER FIXER',sub:'Fix the building. Learn as you go.',start:'START DAY',pause:'PAUSE',resume:'RESUME',quit:'END DAY',paused:'PAUSED',load:'Loading hand tracking...',camErr:'Camera unavailable. Allow camera access (HTTPS or localhost) and reload.',phone:'TASKS',floor:'Floor',none:'No tasks yet...',
 hintRoom:'"Call me" hand = check phone | Point left/right = turn',
 hintArr:'Switch off the power/water first | Thumbs up = SNAP into the room | "Call me" = phone',
-hintScene:'*SNAP!* Task scene comes in the next build | R = back to your room (test)',
+hintScene:'Both open palms together = toolbox | Follow the manual',
 warn:{water:'WARNING: Turn OFF the water valve first!',power:'WARNING: Switch OFF the power at the breaker first!',none:'Wear gloves and work carefully.'},
-note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP'},
+note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP',score:'Score',box:'TOOLBOX',tool:'Tool',inHand:'In hand',wrong:'Wrong tool! Need',shutFirst:'Do the shut-off first!',shutOk:'Shut-off done! Thumbs up to snap into the room.',turnBack:'Turn around to the utility box (point left/right)',thanks:'Thank you, Super! All fixed.',hintPhone:'Point + pinch = choose task | "Call me" again = close',hintDone:'"Call me" = next task',hintLook:'Turn toward the resident (point left/right)',act:{cw:'Rotate your fist clockwise',ccw:'Rotate your fist counter-clockwise',grab:'Pinch and hold',pull:'Pinch and drag',wait:'Hold on...'}},
 ms:{title:'SUPER FIXER',sub:'Baiki bangunan. Belajar sambil bekerja.',start:'MULAKAN HARI',pause:'JEDA',resume:'SAMBUNG',quit:'TAMAT HARI',paused:'DIJEDA',load:'Memuatkan penjejakan tangan...',camErr:'Kamera tidak tersedia. Benarkan akses kamera (HTTPS atau localhost) dan muat semula.',phone:'TUGASAN',floor:'Tingkat',none:'Belum ada tugasan...',
 hintRoom:'Tangan "call me" = semak telefon | Tunjuk kiri/kanan = berpusing',
 hintArr:'Matikan suis/air dahulu | Ibu jari ke atas = PETIK JARI masuk bilik | "Call me" = telefon',
-hintScene:'*PETIK!* Babak tugasan ada pada versi seterusnya | R = kembali ke bilik (ujian)',
+hintScene:'Kedua-dua tapak tangan terbuka bersama = kotak alat | Ikut manual',
 warn:{water:'AMARAN: Matikan injap air dahulu!',power:'AMARAN: Matikan bekalan elektrik di pemutus litar dahulu!',none:'Pakai sarung tangan dan berhati-hati.'},
-note:'MANUAL',end:'HARI TAMAT',fixes:'Pembaikan siap',again:'MAIN SEMULA',tips:'TIP'}};
+note:'MANUAL',end:'HARI TAMAT',fixes:'Pembaikan siap',again:'MAIN SEMULA',tips:'TIP',score:'Skor',box:'KOTAK ALAT',tool:'Alat',inHand:'Di tangan',wrong:'Alat salah! Perlu',shutFirst:'Matikan dahulu!',shutOk:'Selesai dimatikan! Ibu jari ke atas untuk petik jari masuk bilik.',turnBack:'Berpusing ke kotak utiliti (tunjuk kiri/kanan)',thanks:'Terima kasih, Super! Dah siap dibaiki.',hintPhone:'Tunjuk + cubit = pilih tugasan | "Call me" lagi = tutup',hintDone:'"Call me" = tugasan seterusnya',hintLook:'Pandang penghuni (tunjuk kiri/kanan)',act:{cw:'Putar penumbuk ikut jam',ccw:'Putar penumbuk lawan jam',grab:'Cubit dan tahan',pull:'Cubit dan seret',wait:'Tunggu...'}}};
 const TASKS=[
 {w:2,shut:'water',en:{t:'Leaky tap',s:['Turn off the water valve','Unscrew the tap handle (screwdriver)','Replace the worn washer','Reassemble, tighten with wrench','Open valve, check for drips']},
  ms:{t:'Paip bocor',s:['Matikan injap air','Buka pemegang paip (pemutar skru)','Ganti washer yang haus','Pasang semula, ketatkan dengan sepana','Buka injap, periksa titisan']}},
@@ -102,7 +110,11 @@ box(room,.1,1,1.4,0x88ccff,-2.93,1.8,-.5);
 box(room,1.6,.4,2.4,0x5a3a2a,-2,.2,-1.6);box(room,1.5,.2,2.3,0x4a6fa5,-2,.5,-1.6);box(room,1,.15,.5,0xeeeeee,-2,.65,-2.5);
 box(room,1.6,.1,.8,0x9a7448,2.1,.8,-2.4);box(room,.1,.8,.7,0x7a5a38,1.4,.4,-2.4);box(room,.1,.8,.7,0x7a5a38,2.8,.4,-2.4);
 const ph=box(room,.25,.04,.45,0x111111,1.9,.87,-2.4);box(room,.5,.9,.1,0x3d6b3d,2.1,1.9,-2.9);
-const prob=box(room,.5,.5,.5,0xff3030,0,.25,-.5);prob.visible=false;
+const prob=new THREE.Group();room.add(prob);
+const fx=box(prob,.9,.7,.3,0x778899,1,1.5,-2.8),led=new THREE.Mesh(new THREE.BoxGeometry(.2,.2,.1),new THREE.MeshBasicMaterial({color:0xff3030}));led.position.set(1,2,-2.62);prob.add(led);
+const drip=box(prob,.08,.12,.08,0x44aaff,1,1.1,-2.6);
+const npc=new THREE.Group();room.add(npc);box(npc,.45,.55,.28,0xc04060,0,.8,0);box(npc,.36,.36,.36,0xe0b090,0,1.28,0);box(npc,.15,.55,.18,0x334455,-.12,.28,0);box(npc,.15,.55,.18,0x334455,.12,.28,0);npc.position.set(-1.8,0,.2);
+prob.visible=false;npc.visible=false;
 // hallway
 box(hall,4,.1,8,0x6e6e78,0,0,-.5);box(hall,4,.1,8,0xcfc6b4,0,3,-.5);
 box(hall,.1,3,8,0xcfc6b4,-2,1.5,-.5);box(hall,.1,3,8,0xcfc6b4,2,1.5,-.5);box(hall,4,3,.1,0xcfc6b4,0,1.5,-4.5);box(hall,4,3,.1,0xcfc6b4,0,1.5,3.5);
@@ -121,33 +133,36 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms)),rnd=n=>Math.floor(Math.random()
 const running=()=>!['menu','paused','end'].includes(state);
 const roomNo=k=>`${k.floor}${String(k.room).padStart(2,'0')}`;
 function spawn(){if(tickets.length>=6)return;tickets.push({id:++tid,type:rnd(TASKS.length),floor:1+rnd(5),room:1+rnd(10)});if(phoneOpen)renderPhone()}
-function setView(v){room.visible=v==='room'||v==='scene';hall.visible=v==='hall';prob.visible=v==='scene';
+function setView(v){room.visible=v==='room'||v==='scene';hall.visible=v==='hall';prob.visible=npc.visible=v==='scene';
  if(v==='hall')cam.position.set(0,1.6,0);else cam.position.set(0,1.6,v==='scene'?2:2.5);yaw=0}
 
 /* ---------- UI RENDER ---------- */
 function lgButtons(){document.querySelectorAll('.lg').forEach(b=>{b.innerHTML='';for(const[l,n]of[['en','ENGLISH'],['ms','MALAY']]){const e=document.createElement('button');e.textContent=n;e.className=lang===l?'on':'';e.onclick=()=>{lang=l;refresh()};b.append(e)}})}
 function refresh(){lgButtons();$('mTitle').textContent=t('title');$('mSub').textContent=t('sub');$('startBtn').textContent=t('start');
  $('pauseBtn').textContent=t('pause');$('pTitle').textContent=t('paused');$('resBtn').textContent=t('resume');$('quitBtn').textContent=t('quit');$('eTitle').textContent=t('end');$('againBtn').textContent=t('again');
- $('eStats').textContent=`${t('fixes')}: ${fixes}`;renderPhone();renderNote();renderHint()}
-function renderHint(){$('hint').textContent=state==='arrived'?t('hintArr'):state==='scene'?t('hintScene'):t('hintRoom')}
+ $('eStats').textContent=`${t('fixes')}: ${fixes}  ${t('score')}: ${score}`;renderScore();renderPhone();renderNote();renderHint()}
+function renderHint(){$('hint').textContent=phoneOpen?t('hintPhone'):state==='arrived'?t('hintArr'):state==='scene'?t('hintScene'):state==='done'?t(looked?'hintDone':'hintLook'):t('hintRoom')}
 function renderPhone(){const p=$('phone');p.innerHTML=`<h3>${t('phone')}</h3>`+(tickets.length?tickets.map(k=>{const T=TASKS[k.type];return`<div class="tk" data-id="${k.id}">${t('floor')} ${k.floor} - ${roomNo(k)}<br>${T[lang].t} ${'*'.repeat(T.w)}</div>`}).join(''):`<div>${t('none')}</div>`)}
-function renderNote(){const n=$('note'),w=$('warn');if(!picked||!['arrived','scene'].includes(state)){n.hidden=w.hidden=true;return}
- const T=TASKS[picked.type];n.hidden=false;n.innerHTML=`<h4>${t('note')}: ${T[lang].t}</h4><ol>${T[lang].s.map(s=>`<li>${s}</li>`).join('')}</ol>`;w.hidden=false;w.textContent=t('warn')[T.shut]}
-const openPhone=()=>{phoneOpen=true;renderPhone();$('phone').hidden=false};
-const closePhone=()=>{phoneOpen=false;$('phone').hidden=true};
+function renderNote(){const n=$('note'),w=$('warn');if(!picked||!['arrived','scene','done'].includes(state)){n.hidden=w.hidden=true;return}
+ const T=TASKS[picked.type];n.hidden=false;n.innerHTML=`<h4>${t('note')}: ${T[lang].t}</h4><ol>${T[lang].s.map((s,i)=>`<li style="${i<stepI?'text-decoration:line-through;opacity:.5':i===stepI?'font-weight:bold;color:#a33':''}">${s}</li>`).join('')}</ol>`;w.hidden=false;w.textContent=t('warn')[T.shut]}
+const openPhone=()=>{phoneOpen=true;renderPhone();$('phone').hidden=false;renderHint()};
+const closePhone=()=>{phoneOpen=false;$('phone').hidden=true;renderHint()};
 
 /* ---------- FLOW ---------- */
 async function travel(k){
- picked=k;tickets=tickets.filter(x=>x!==k);closePhone();state='travel';renderNote();
+ picked=k;tickets=tickets.filter(x=>x!==k);closePhone();closeTools();state='travel';renderNote();
  const f=$('fade'),tp=$('tip');tp.textContent='';f.style.opacity=1;
  const z0=cam.position.z,t0=performance.now(); // walk to the door while fading
  (function w(){const a=Math.min(1,(performance.now()-t0)/1200);cam.position.z=z0+(-2.1-z0)*a;if(a<1)requestAnimationFrame(w)})();
  await sleep(1300);tp.innerHTML=`${t('tips')}<br><br>${TIPS[lang][rnd(TIPS[lang].length)]}`;await sleep(3500);
  sign(roomNo(k));utilMat.color.set(TASKS[k.type].shut==='power'?0xe0b020:0x2a6fd6);util.visible=TASKS[k.type].shut!=='none';
  setView('hall');tp.textContent='';f.style.opacity=0;await sleep(1200);
- state='arrived';renderNote();renderHint()}
-async function snap(){state='scene';const fl=$('flash');fl.style.opacity=1;await sleep(120);setView('scene');fl.style.opacity=0;renderHint()}
-function startDay(){fixes=0;tLeft=300;tickets=[];picked=null;spawn();spawn();nextSpawn=10+Math.random()*20;setView('room');state='room';$('hud').hidden=false;
+ stepI=0;prog=0;inHand=null;state='arrived';renderNote();renderHint()}
+async function snap(){const T=TASKS[picked.type];if(stepI<(T.shut!=='none'?1:0)){say(t('shutFirst'));return}
+ state='scene';prog=0;const fl=$('flash');fl.style.opacity=1;await sleep(120);setView('scene');
+ fx.material=M(T.shut==='water'?0x6b8fb0:T.shut==='power'?0xe0b020:0x9a9a9a);led.material.color.set(0xff3030);drip.visible=T.shut!=='power';
+ fl.style.opacity=0;renderNote();renderHint()}
+function startDay(){fixes=0;score=0;stepI=0;prog=0;inHand=null;closeTools();tLeft=300;tickets=[];picked=null;spawn();spawn();nextSpawn=10+Math.random()*20;setView('room');state='room';$('hud').hidden=false;
  for(const e of['menu','pause','end'])$(e).hidden=true;refresh()}
 function endDay(){state='end';closePhone();$('end').hidden=false;$('pause').hidden=true;refresh()}
 function pause(){if(!running()||state==='travel')return;prev=state;state='paused';$('pause').hidden=false}
@@ -156,6 +171,47 @@ $('pauseBtn').onclick=pause;$('resBtn').onclick=resume;$('quitBtn').onclick=endD
 addEventListener('keydown',e=>{if(e.key==='Escape')state==='paused'?resume():pause();
  if(e.key==='d'||e.key==='D'){const d=$('dbgPanel');d.style.display=d.style.display==='block'?'none':'block'}
  if(e.key==='r'||e.key==='R'){if(state==='scene'||state==='arrived'){state='room';picked=null;setView('room');renderNote();renderHint()}}});
+
+/* ---------- TASK ENGINE ---------- */
+let stepI=0,prog=0,score=0,looked=false,toolOpen=false,inHand=null,callRel=0,bookPrev=false,cool2=0,sayT=0;
+const ad=(a,b)=>((a-b+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
+const TN={screwdriver:['Screwdriver','Pemutar skru'],wrench:['Wrench','Sepana'],plier:['Pliers','Playar'],tape:['Repair tape','Pita pembaikan'],bucket:['Bucket','Baldi'],washer:['New washer','Washer baru'],bulb:['New bulb','Mentol baru'],tube:['New tube light','Tiub lampu baru'],tester:['Voltage tester','Penguji voltan'],hammer:['Hammer','Tukul']};
+const tn=k=>k&&k!=='none'&&TN[k]?TN[k][lang==='en'?0:1]:'-';
+// per task, per step 'tool:action' (step 0 of power/water tasks is the shut-off, handled at the utility box)
+const ACTS=[['','screwdriver:ccw450','washer:grab','wrench:cw540','none:ccw360'],
+['bucket:grab','wrench:ccw450','none:pull','wrench:cw450','none:ccw360'],
+['','none:wait3','none:ccw540','bulb:cw540','none:pull'],
+['','none:ccw90','none:pull','tube:cw90','none:pull'],
+['','none:wait3','tape:cw720','wrench:cw540','none:ccw360'],
+['','none:grab','none:pull','tester:grab','none:wait3'],
+['','tester:grab','plier:pull','plier:cw360','tape:cw720']];
+function say(x,ms=2500){const e=$('say');e.textContent=x;e.hidden=false;clearTimeout(sayT);sayT=setTimeout(()=>e.hidden=true,ms)}
+function renderScore(){$('score').textContent=`${t('fixes')}: ${fixes}   ${t('score')}: ${score}`}
+function renderTools(){$('tbox').innerHTML=`<h3>${t('box')}</h3><div class="tg">`+Object.keys(TN).map(k=>`<div class="tl" data-id="${k}">${tn(k)}</div>`).join('')+'</div>'}
+function openTools(){toolOpen=true;renderTools();$('tbox').hidden=false}
+function closeTools(){toolOpen=false;$('tbox').hidden=true}
+function pickTool(k){inHand=k;closeTools()}
+function curAct(){if(!picked)return null;const T=TASKS[picked.type];if(stepI>=T.en.s.length)return null;
+ if(stepI===0&&T.shut!=='none')return state==='arrived'?{tool:'none',act:T.shut==='water'?'cw540':'pull',shut:1}:null;
+ if(state!=='scene')return null;const[a,b]=ACTS[picked.type][stepI].split(':');return{tool:a,act:b}}
+function completeStep(){prog=0;stepI++;const T=TASKS[picked.type];
+ if(stepI>=T.en.s.length)finishTask();else if(stepI===1&&T.shut!=='none')say(t('shutOk'),4000);
+ renderNote();renderHint()}
+function finishTask(){const T=TASKS[picked.type];fixes++;score+=T.w*100;state='done';looked=false;inHand=null;led.material.color.set(0x30ff60);drip.visible=false;renderScore()}
+function actTick(dt){const A=curAct(),box=$('act');
+ if(!A||phoneOpen||toolOpen){box.hidden=true;return}
+ const m=A.act.match(/^(cw|ccw|grab|pull|wait)(\d*)$/),k=m[1],need=k==='grab'?1:k==='pull'?.6:+m[2];
+ const facing=!A.shut||Math.abs(ad(yaw,Math.PI))<.7,wrong=A.tool!=='none'&&inHand!==A.tool;
+ const msg=!facing?t('turnBack'):wrong?`${t('wrong')}: ${tn(A.tool)}`:t('act')[k];
+ if(facing&&!wrong){let d=0;
+  if(k==='cw'||k==='ccw'){for(const h of S)if(h.st==='fist')d+=(k==='cw'?1:-1)*h.dwr;prog=Math.max(0,prog+d)}
+  else if(k==='pull'){for(const h of S)if(h.st==='pinch')d+=h.dmv;prog+=d}
+  else if(k==='grab'){S.some(h=>h.st==='pinch')?prog+=dt:prog=0}
+  else prog+=dt}
+ box.hidden=false;box.innerHTML=`${TASKS[picked.type][lang].s[stepI]}<br>${t('tool')}: ${tn(A.tool)} | ${t('inHand')}: ${tn(inHand)}<br>${msg}<div class="bar"><i style="width:${Math.min(100,prog/need*100)}%"></i></div>`;
+ if(prog>=need)completeStep()}
+function engine(dt){actTick(dt);
+ if(state==='done'&&!looked&&Math.abs(ad(yaw,.785))<.35){looked=true;say(t('thanks'),6000);renderHint()}}
 
 /* ---------- GESTURES ---------- */
 const d2=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
@@ -171,30 +227,36 @@ function classify(l){
  return'other'}
 const S=[0,1].map(()=>({g:'none',cnt:0,st:'none',vis:false,cx:0,cy:0,pa:null,wr:0,wl:null}));
 function onEdge(s,g){const now=performance.now();
- if(g==='callme'&&now>cool&&['room','arrived','scene'].includes(state)){cool=now+1200;phoneOpen?closePhone():openPhone()}
- if(g==='pinch'&&phoneOpen){const id=hover(s);const k=tickets.find(x=>x.id===id);if(k)travel(k)}
+ if(g==='callme'&&now>cool&&['room','arrived','done'].includes(state)&&(state!=='done'||looked)){
+  if(!phoneOpen){cool=now+800;callRel=0;openPhone()} else if(callRel&&now-callRel>500){cool=now+800;closePhone()}}
+ if(g==='pinch'&&phoneOpen){const k=tickets.find(x=>String(x.id)===hover(s));if(k)travel(k)}
+ if(g==='pinch'&&toolOpen){const id=hover(s);if(id)pickTool(id)}
  if(g==='thumbsup'&&state==='arrived'&&!phoneOpen)snap()}
 function hover(s){const h=S[s];if(!h.vis)return null;const r=stage.getBoundingClientRect();
- for(const e of $('phone').querySelectorAll('.tk')){const b=e.getBoundingClientRect(),x=h.cx+r.left,y=h.cy+r.top;if(x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom)return+e.dataset.id}return null}
-function handle(s,l){const h=S[s],g=classify(l);
+ for(const e of document.querySelectorAll('#phone:not([hidden]) .tk,#tbox:not([hidden]) .tl')){const b=e.getBoundingClientRect(),x=h.cx+r.left,y=h.cy+r.top;if(x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom)return e.dataset.id}return null}
+function handle(s,l){const h=S[s],g=classify(l);h.dwr=0;h.dmv=0;
  if(g===h.g)h.cnt++;else{h.g=g;h.cnt=1;h.pa=null}
  if(h.cnt>=3&&h.st!==g){h.st=g;h.pa=null;onEdge(s,g)}
  const W=stage.clientWidth,H=stage.clientHeight,tx=(1-l[8].x)*W,ty=l[8].y*H;
  h.cx=h.vis?h.cx+(tx-h.cx)*.5:tx;h.cy=h.vis?h.cy+(ty-h.cy)*.5:ty;h.vis=true;
  const a=Math.atan2(l[9].y-l[0].y,-(l[9].x-l[0].x));
  if(h.pa!==null&&h.st===g){let dA=a-h.pa;if(dA>Math.PI)dA-=2*Math.PI;if(dA<-Math.PI)dA+=2*Math.PI;
-  if(g==='fist')h.wr+=dA*180/Math.PI}
+  if(g==='fist'){h.wr+=dA*180/Math.PI;h.dwr=dA*180/Math.PI}}
  if(g!=='fist')h.wr=0;h.pa=a;
+ if(h.st==='pinch'){if(h.pp)h.dmv=Math.hypot(l[8].x-h.pp[0],l[8].y-h.pp[1]);h.pp=[l[8].x,l[8].y]}else h.pp=null;
  h.turn=0;if(h.st==='point'){const dx=l[5].x-l[8].x,dy=l[8].y-l[5].y;if(Math.abs(dx)>Math.abs(dy)*1.5&&Math.abs(dx)>.06)h.turn=dx>0?-1:1} // point left/right = turn
  const c=$('c'+s);c.style.display='block';c.style.left=h.cx+'px';c.style.top=h.cy+'px';c.className='cur'+(h.st==='pinch'?' p':'')}
 const ov=$('ov').getContext('2d');
 function processHands(res){
  const hs=res.landmarks.map(l=>({l,x:1-l[0].x})).sort((a,b)=>a.x-b.x),seen=[0,0];
  hs.forEach((h,i)=>{const s=hs.length===2?i:(h.x<.5?0:1);seen[s]=1;handle(s,h.l)});
- [0,1].forEach(s=>{if(!seen[s]){Object.assign(S[s],{turn:0,vis:false,g:'none',cnt:0,st:'none',pa:null,wr:0});$('c'+s).style.display='none'}});
- if(phoneOpen)document.querySelectorAll('.tk').forEach(e=>e.classList.toggle('hv',[0,1].some(s=>hover(s)===+e.dataset.id)));
+ [0,1].forEach(s=>{if(!seen[s]){Object.assign(S[s],{dwr:0,dmv:0,pp:null,turn:0,vis:false,g:'none',cnt:0,st:'none',pa:null,wr:0});$('c'+s).style.display='none'}});
+ if(phoneOpen||toolOpen)document.querySelectorAll('.tk,.tl').forEach(e=>e.classList.toggle('hv',[0,1].some(s=>hover(s)===e.dataset.id)));
+ if(phoneOpen){const c=S[0].st==='callme'||S[1].st==='callme';if(c)callRel=0;else if(!callRel)callRel=performance.now()}
  ov.clearRect(0,0,640,480);ov.fillStyle='#0f0';res.landmarks.forEach(l=>l.forEach(p=>ov.fillRect(p.x*640-3,p.y*480-3,6,6)));
  const book=S[0].st==='open'&&S[1].st==='open'&&hs.length===2&&Math.abs(hs[0].l[0].x-hs[1].l[0].x)<.3;
+ if(book&&!bookPrev&&state==='scene'&&!phoneOpen&&performance.now()>cool2){cool2=performance.now()+1000;toolOpen?closeTools():openTools()}
+ bookPrev=book;
  $('dtxt').textContent=`L: ${S[0].st}  R: ${S[1].st}\nfist turn L/R: ${S[0].wr.toFixed(0)} / ${S[1].wr.toFixed(0)} deg\nopen book: ${book}\n(D hides this)`}
 
 /* ---------- LOOP ---------- */
@@ -203,8 +265,8 @@ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;
  if(lm&&$('vid').readyState>=2&&$('vid').currentTime!==lastVT){lastVT=$('vid').currentTime;processHands(lm.detectForVideo($('vid'),now))}
  if(running()){tLeft-=dt;nextSpawn-=dt;if(nextSpawn<=0){spawn();nextSpawn=10+Math.random()*20}
   if(tLeft<=0){tLeft=0;endDay()}$('timer').textContent=`${Math.floor(tLeft/60)}:${String(Math.floor(tLeft%60)).padStart(2,'0')}`}
- if(running()&&!phoneOpen&&['room','arrived','scene'].includes(state))yaw+=Math.max(-1,Math.min(1,S[0].turn+S[1].turn))*1.6*dt;
- cam.rotation.y=yaw;if(prob.visible)prob.scale.setScalar(1+.15*Math.sin(now/200));R.render(scene,cam);requestAnimationFrame(frame)}
+ if(running()&&!phoneOpen&&!toolOpen&&['room','arrived','scene','done'].includes(state))yaw+=Math.max(-1,Math.min(1,S[0].turn+S[1].turn))*1.6*dt;
+ cam.rotation.y=yaw;if(running())engine(dt);if(drip.visible)drip.position.y=1.1-((now/400)%1)*.3;R.render(scene,cam);requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 
 /* ---------- START ---------- */
