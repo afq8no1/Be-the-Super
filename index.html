@@ -51,7 +51,7 @@ button.on{background:#5ee08a}
  </div>
  <div id="fade"><div id="tip"></div></div><div id="flash"></div>
  <div id="dbgPanel"><div class="vw"><video id="vid" playsinline muted></video><canvas id="ov" width="640" height="480"></canvas></div><pre id="dtxt"></pre></div>
- <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v6</div></div>
+ <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v7</div></div>
  <div class="panel" id="pause" hidden><h1 id="pTitle"></h1><div class="lg"></div><button id="resBtn"></button><button id="quitBtn"></button></div>
  <div class="panel" id="end" hidden><h1 id="eTitle"></h1><div id="eStats"></div><button id="againBtn"></button></div>
 </div>
@@ -68,13 +68,13 @@ hintRoom:'"Call me" hand = check phone | Point left/right = turn',
 hintArr:'Switch off the power/water first | Thumbs up = SNAP into the room | "Call me" = phone',
 hintScene:'Both open palms together = toolbox | Follow the manual',
 warn:{water:'WARNING: Turn OFF the water valve first!',power:'WARNING: Switch OFF the power at the breaker first!',none:'Wear gloves and work carefully.'},
-note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP',score:'Score',box:'TOOLBOX',tool:'Tool',inHand:'In hand',wrong:'Wrong tool! Need',shutFirst:'Do the shut-off first!',shutOk:'Shut-off done! Thumbs up to snap into the room.',turnBack:'Turn around to the utility box (point left/right)',thanks:'Thank you, Super! All fixed.',hintPhone:'Point + pinch = choose task | "Call me" again = close',hintDone:'"Call me" = next task',hintLook:'Turn toward the resident (point left/right)',act:{cw:'Rotate your fist clockwise',ccw:'Rotate your fist counter-clockwise',grab:'Pinch and hold',pull:'Pinch and drag',wait:'Hold on...'}},
+note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP',score:'Score',box:'TOOLBOX',tool:'Tool',inHand:'In hand',wrong:'Wrong tool! Need',shutFirst:'Do the shut-off first!',shutOk:'Shut-off done! Thumbs up to snap into the room.',turnBack:'Turn around to the utility box (point left/right)',thanks:'Thank you, Super! All fixed.',hintPhone:'Point + pinch = choose task | "Call me" again = close',hintDone:'"Call me" = next task',hintLook:'Turn toward the resident (point left/right)',act:{cw:'Fist facing camera: twist like a doorknob CLOCKWISE',ccw:'Fist facing camera: twist like a doorknob COUNTER-CLOCKWISE',grab:'Pinch and hold',pull:'Pinch and drag',down:'Pinch and drag DOWN',wait:'Hold on...'}},
 ms:{title:'SUPER FIXER',sub:'Baiki bangunan. Belajar sambil bekerja.',start:'MULAKAN HARI',pause:'JEDA',resume:'SAMBUNG',quit:'TAMAT HARI',paused:'DIJEDA',load:'Memuatkan penjejakan tangan...',camErr:'Kamera tidak tersedia. Benarkan akses kamera (HTTPS atau localhost) dan muat semula.',phone:'TUGASAN',floor:'Tingkat',none:'Belum ada tugasan...',
 hintRoom:'Tangan "call me" = semak telefon | Tunjuk kiri/kanan = berpusing',
 hintArr:'Matikan suis/air dahulu | Ibu jari ke atas = PETIK JARI masuk bilik | "Call me" = telefon',
 hintScene:'Kedua-dua tapak tangan terbuka bersama = kotak alat | Ikut manual',
 warn:{water:'AMARAN: Matikan injap air dahulu!',power:'AMARAN: Matikan bekalan elektrik di pemutus litar dahulu!',none:'Pakai sarung tangan dan berhati-hati.'},
-note:'MANUAL',end:'HARI TAMAT',fixes:'Pembaikan siap',again:'MAIN SEMULA',tips:'TIP',score:'Skor',box:'KOTAK ALAT',tool:'Alat',inHand:'Di tangan',wrong:'Alat salah! Perlu',shutFirst:'Matikan dahulu!',shutOk:'Selesai dimatikan! Ibu jari ke atas untuk petik jari masuk bilik.',turnBack:'Berpusing ke kotak utiliti (tunjuk kiri/kanan)',thanks:'Terima kasih, Super! Dah siap dibaiki.',hintPhone:'Tunjuk + cubit = pilih tugasan | "Call me" lagi = tutup',hintDone:'"Call me" = tugasan seterusnya',hintLook:'Pandang penghuni (tunjuk kiri/kanan)',act:{cw:'Putar penumbuk ikut jam',ccw:'Putar penumbuk lawan jam',grab:'Cubit dan tahan',pull:'Cubit dan seret',wait:'Tunggu...'}}};
+note:'MANUAL',end:'HARI TAMAT',fixes:'Pembaikan siap',again:'MAIN SEMULA',tips:'TIP',score:'Skor',box:'KOTAK ALAT',tool:'Alat',inHand:'Di tangan',wrong:'Alat salah! Perlu',shutFirst:'Matikan dahulu!',shutOk:'Selesai dimatikan! Ibu jari ke atas untuk petik jari masuk bilik.',turnBack:'Berpusing ke kotak utiliti (tunjuk kiri/kanan)',thanks:'Terima kasih, Super! Dah siap dibaiki.',hintPhone:'Tunjuk + cubit = pilih tugasan | "Call me" lagi = tutup',hintDone:'"Call me" = tugasan seterusnya',hintLook:'Pandang penghuni (tunjuk kiri/kanan)',act:{cw:'Penumbuk ke kamera: pulas seperti tombol pintu IKUT JAM',ccw:'Penumbuk ke kamera: pulas seperti tombol pintu LAWAN JAM',grab:'Cubit dan tahan',pull:'Cubit dan seret',down:'Cubit dan seret ke BAWAH',wait:'Tunggu...'}}};
 const TASKS=[
 {w:2,shut:'water',en:{t:'Leaky tap',s:['Turn off the water valve','Unscrew the tap handle (screwdriver)','Replace the worn washer','Reassemble, tighten with wrench','Open valve, check for drips']},
  ms:{t:'Paip bocor',s:['Matikan injap air','Buka pemegang paip (pemutar skru)','Ganti washer yang haus','Pasang semula, ketatkan dengan sepana','Buka injap, periksa titisan']}},
@@ -111,7 +111,7 @@ box(room,1.6,.4,2.4,0x5a3a2a,-2,.2,-1.6);box(room,1.5,.2,2.3,0x4a6fa5,-2,.5,-1.6
 box(room,1.6,.1,.8,0x9a7448,2.1,.8,-2.4);box(room,.1,.8,.7,0x7a5a38,1.4,.4,-2.4);box(room,.1,.8,.7,0x7a5a38,2.8,.4,-2.4);
 const ph=box(room,.25,.04,.45,0x111111,1.9,.87,-2.4);box(room,.5,.9,.1,0x3d6b3d,2.1,1.9,-2.9);
 const prob=new THREE.Group();room.add(prob);
-const fx=box(prob,.9,.7,.3,0x778899,1,1.5,-2.8),led=new THREE.Mesh(new THREE.BoxGeometry(.2,.2,.1),new THREE.MeshBasicMaterial({color:0xff3030}));led.position.set(1,2,-2.62);prob.add(led);
+const fx=box(prob,.9,.7,.3,0x778899,1,1.5,-2.8),led=new THREE.Mesh(new THREE.BoxGeometry(.2,.2,.1),new THREE.MeshBasicMaterial({color:0xff3030}));led.position.set(1,2,-2.62);prob.add(led);const fxMat=new THREE.MeshLambertMaterial({color:0x778899});fx.material=fxMat;let lightTask=false;
 const drip=box(prob,.08,.12,.08,0x44aaff,1,1.1,-2.6);
 const npc=new THREE.Group();room.add(npc);box(npc,.45,.55,.28,0xc04060,0,.8,0);box(npc,.36,.36,.36,0xe0b090,0,1.28,0);box(npc,.15,.55,.18,0x334455,-.12,.28,0);box(npc,.15,.55,.18,0x334455,.12,.28,0);npc.position.set(-1.8,0,.2);
 prob.visible=false;npc.visible=false;
@@ -123,8 +123,13 @@ box(hall,1.2,2.2,.12,0x3b82c4,0,1.1,-4.44);
 const sc=document.createElement('canvas');sc.width=128;sc.height=64;const sx=sc.getContext('2d'),stex=new THREE.CanvasTexture(sc);stex.magFilter=stex.minFilter=THREE.NearestFilter;
 const sign=s=>{sx.fillStyle='#14304f';sx.fillRect(0,0,128,64);sx.fillStyle='#fff';sx.font='bold 44px monospace';sx.textAlign='center';sx.textBaseline='middle';sx.fillText(s,64,34);stex.needsUpdate=true};
 const plate=new THREE.Mesh(new THREE.PlaneGeometry(1.2,.6),new THREE.MeshBasicMaterial({map:stex}));plate.position.set(0,2.6,-4.38);hall.add(plate);
-const util=new THREE.Group();hall.add(util);box(util,1.2,1.4,.2,0x777777,0,1.5,3.35);
-const utilMat=new THREE.MeshLambertMaterial({color:0x2a6fd6}),um=new THREE.Mesh(new THREE.BoxGeometry(.7,.7,.1),utilMat);um.position.set(0,1.5,3.22);util.add(um);
+const util=new THREE.Group();hall.add(util);const pw=new THREE.Group(),wt=new THREE.Group();util.add(pw,wt);
+box(pw,1.3,1.7,.2,0x888888,0,1.4,3.35);box(pw,1.1,1.5,.06,0x2a2a33,0,1.4,3.24);
+for(const y of[1.95,1.7])for(const x of[-.35,-.1,.15,.4])box(pw,.16,.18,.08,0xbbbbbb,x,y,3.2);
+box(pw,.5,.9,.06,0x444455,0,1,3.22);box(pw,.7,.1,.03,0xffffff,0,1.5,3.2);
+const lever=box(pw,.26,.4,.12,0x30c050,0,1.2,3.16);
+box(wt,2.6,.18,.18,0x999999,0,1.2,3.3);box(wt,.4,.4,.4,0x2a6fd6,0,1.2,3.3);box(wt,.08,.35,.08,0x777777,0,1.5,3.3);
+const wheel=new THREE.Group();wheel.position.set(0,1.75,3.25);wt.add(wheel);box(wheel,.8,.09,.09,0xdd3333,0,0,0);box(wheel,.09,.8,.09,0xdd3333,0,0,0);
 hall.visible=false;
 
 /* ---------- STATE ---------- */
@@ -155,12 +160,16 @@ async function travel(k){
  const z0=cam.position.z,t0=performance.now(); // walk to the door while fading
  (function w(){const a=Math.min(1,(performance.now()-t0)/1200);cam.position.z=z0+(-2.1-z0)*a;if(a<1)requestAnimationFrame(w)})();
  await sleep(1300);tp.innerHTML=`${t('tips')}<br><br>${TIPS[lang][rnd(TIPS[lang].length)]}`;await sleep(3500);
- sign(roomNo(k));utilMat.color.set(TASKS[k.type].shut==='power'?0xe0b020:0x2a6fd6);util.visible=TASKS[k.type].shut!=='none';
+ sign(roomNo(k));const sh=TASKS[k.type].shut;pw.visible=sh==='power';wt.visible=sh==='water';lever.position.y=1.2;lever.material=M(0x30c050);wheel.rotation.z=0;
  setView('hall');tp.textContent='';f.style.opacity=0;await sleep(1200);
  stepI=0;prog=0;inHand=null;state='arrived';renderNote();renderHint()}
 async function snap(){const T=TASKS[picked.type];if(stepI<(T.shut!=='none'?1:0)){say(t('shutFirst'));return}
  state='scene';prog=0;const fl=$('flash');fl.style.opacity=1;await sleep(120);setView('scene');
- fx.material=M(T.shut==='water'?0x6b8fb0:T.shut==='power'?0xe0b020:0x9a9a9a);led.material.color.set(0xff3030);drip.visible=T.shut!=='power';
+ const ty=picked.type,li=ty===2||ty===3,tb=ty===3;lightTask=li;
+ fx.scale.set(tb?1.8:li?.45:1,tb?.22:li?.6:1,li?.8:1);fx.position.set(li?0:1,li?2.6:1.5,-2.8);led.position.set(li?0:1,li?2.25:2,-2.62);
+ fxMat.color.set(T.shut==='water'?0x6b8fb0:li?0xffe9a0:T.shut==='power'?0xe0b020:0x9a9a9a);
+ if(li)say(lang==='en'?'Look up: the light on the wall is flickering!':'Pandang atas: lampu di dinding berkelip!',4000);
+ led.material.color.set(0xff3030);drip.visible=T.shut!=='power';
  fl.style.opacity=0;renderNote();renderHint()}
 function startDay(){fixes=0;score=0;stepI=0;prog=0;inHand=null;closeTools();tLeft=300;tickets=[];picked=null;spawn();spawn();nextSpawn=10+Math.random()*20;setView('room');state='room';$('hud').hidden=false;
  for(const e of['menu','pause','end'])$(e).hidden=true;refresh()}
@@ -178,13 +187,13 @@ const ad=(a,b)=>((a-b+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
 const TN={screwdriver:['Screwdriver','Pemutar skru'],wrench:['Wrench','Sepana'],plier:['Pliers','Playar'],tape:['Repair tape','Pita pembaikan'],bucket:['Bucket','Baldi'],washer:['New washer','Washer baru'],bulb:['New bulb','Mentol baru'],tube:['New tube light','Tiub lampu baru'],tester:['Voltage tester','Penguji voltan'],hammer:['Hammer','Tukul']};
 const tn=k=>k&&k!=='none'&&TN[k]?TN[k][lang==='en'?0:1]:'-';
 // per task, per step 'tool:action' (step 0 of power/water tasks is the shut-off, handled at the utility box)
-const ACTS=[['','screwdriver:ccw450','washer:grab','wrench:cw540','none:ccw360'],
-['bucket:grab','wrench:ccw450','none:pull','wrench:cw450','none:ccw360'],
-['','none:wait3','none:ccw540','bulb:cw540','none:pull'],
+const ACTS=[['','screwdriver:ccw300','washer:grab','wrench:cw360','none:ccw270'],
+['bucket:grab','wrench:ccw300','none:pull','wrench:cw300','none:ccw270'],
+['','none:wait3','none:ccw360','bulb:cw360','none:pull'],
 ['','none:ccw90','none:pull','tube:cw90','none:pull'],
-['','none:wait3','tape:cw720','wrench:cw540','none:ccw360'],
+['','none:wait3','tape:cw450','wrench:cw360','none:ccw270'],
 ['','none:grab','none:pull','tester:grab','none:wait3'],
-['','tester:grab','plier:pull','plier:cw360','tape:cw720']];
+['','tester:grab','plier:pull','plier:cw270','tape:cw450']];
 function say(x,ms=2500){const e=$('say');e.textContent=x;e.hidden=false;clearTimeout(sayT);sayT=setTimeout(()=>e.hidden=true,ms)}
 function renderScore(){$('score').textContent=`${t('fixes')}: ${fixes}   ${t('score')}: ${score}`}
 function renderTools(){$('tbox').innerHTML=`<h3>${t('box')}</h3><div class="tg">`+Object.keys(TN).map(k=>`<div class="tl" data-id="${k}">${tn(k)}</div>`).join('')+'</div>'}
@@ -192,7 +201,7 @@ function openTools(){toolOpen=true;renderTools();$('tbox').hidden=false}
 function closeTools(){toolOpen=false;$('tbox').hidden=true}
 function pickTool(k){inHand=k;closeTools()}
 function curAct(){if(!picked)return null;const T=TASKS[picked.type];if(stepI>=T.en.s.length)return null;
- if(stepI===0&&T.shut!=='none')return state==='arrived'?{tool:'none',act:T.shut==='water'?'cw540':'pull',shut:1}:null;
+ if(stepI===0&&T.shut!=='none')return state==='arrived'?{tool:'none',act:T.shut==='water'?'cw360':'down',shut:1}:null;
  if(state!=='scene')return null;const[a,b]=ACTS[picked.type][stepI].split(':');return{tool:a,act:b}}
 function completeStep(){prog=0;stepI++;const T=TASKS[picked.type];
  if(stepI>=T.en.s.length)finishTask();else if(stepI===1&&T.shut!=='none')say(t('shutOk'),4000);
@@ -200,14 +209,16 @@ function completeStep(){prog=0;stepI++;const T=TASKS[picked.type];
 function finishTask(){const T=TASKS[picked.type];fixes++;score+=T.w*100;state='done';looked=false;inHand=null;led.material.color.set(0x30ff60);drip.visible=false;renderScore()}
 function actTick(dt){const A=curAct(),box=$('act');
  if(!A||phoneOpen||toolOpen){box.hidden=true;return}
- const m=A.act.match(/^(cw|ccw|grab|pull|wait)(\d*)$/),k=m[1],need=k==='grab'?1:k==='pull'?.6:+m[2];
+ const m=A.act.match(/^(cw|ccw|grab|pull|down|wait)(\d*)$/),k=m[1],need=k==='grab'?1:k==='pull'?.6:k==='down'?.22:+m[2];
  const facing=!A.shut||Math.abs(ad(yaw,Math.PI))<.7,wrong=A.tool!=='none'&&inHand!==A.tool;
  const msg=!facing?t('turnBack'):wrong?`${t('wrong')}: ${tn(A.tool)}`:t('act')[k];
  if(facing&&!wrong){let d=0;
-  if(k==='cw'||k==='ccw'){for(const h of S)if(h.st==='fist')d+=(k==='cw'?1:-1)*h.dwr;prog=Math.max(0,prog+d)}
+  if(k==='cw'||k==='ccw'){for(const h of S)if(h.st==='fist'){const v=(k==='cw'?1:-1)*h.dwr;if(v>1)d+=v*1.3}prog+=d}
   else if(k==='pull'){for(const h of S)if(h.st==='pinch')d+=h.dmv;prog+=d}
-  else if(k==='grab'){S.some(h=>h.st==='pinch')?prog+=dt:prog=0}
+  else if(k==='down'){for(const h of S)if(h.st==='pinch')d+=Math.max(0,h.dmy);prog+=d}
+  else if(k==='grab'){if(S.some(h=>h.st==='pinch'))prog+=dt}
   else prog+=dt}
+ if(A.shut){if(TASKS[picked.type].shut==='power'){lever.position.y=1.2-.4*Math.min(1,prog/need);if(prog/need>.5)lever.material=M(0xd03030)}else wheel.rotation.z=prog*Math.PI/180}
  box.hidden=false;box.innerHTML=`${TASKS[picked.type][lang].s[stepI]}<br>${t('tool')}: ${tn(A.tool)} | ${t('inHand')}: ${tn(inHand)}<br>${msg}<div class="bar"><i style="width:${Math.min(100,prog/need*100)}%"></i></div>`;
  if(prog>=need)completeStep()}
 function engine(dt){actTick(dt);
@@ -225,32 +236,33 @@ function classify(l){
  if(n===4)return'open';
  if(n===0&&!th)return'fist';
  return'other'}
-const S=[0,1].map(()=>({g:'none',cnt:0,st:'none',vis:false,cx:0,cy:0,pa:null,wr:0,wl:null}));
+const S=[0,1].map(()=>({hist:[],dwr:0,dmv:0,dmy:0,g:'none',cnt:0,st:'none',vis:false,cx:0,cy:0,pa:null,wr:0,wl:null}));
 function onEdge(s,g){const now=performance.now();
  if(g==='callme'&&now>cool&&['room','arrived','done'].includes(state)&&(state!=='done'||looked)){
   if(!phoneOpen){cool=now+800;callRel=0;openPhone()} else if(callRel&&now-callRel>500){cool=now+800;closePhone()}}
- if(g==='pinch'&&phoneOpen){const k=tickets.find(x=>String(x.id)===hover(s));if(k)travel(k)}
- if(g==='pinch'&&toolOpen){const id=hover(s);if(id)pickTool(id)}
+ if(g==='pinch'&&phoneOpen){const k=tickets.find(x=>String(x.id)===hover(s,1));if(k)travel(k)}
+ if(g==='pinch'&&toolOpen){const id=hover(s,1);if(id)pickTool(id)}
  if(g==='thumbsup'&&state==='arrived'&&!phoneOpen)snap()}
-function hover(s){const h=S[s];if(!h.vis)return null;const r=stage.getBoundingClientRect();
- for(const e of document.querySelectorAll('#phone:not([hidden]) .tk,#tbox:not([hidden]) .tl')){const b=e.getBoundingClientRect(),x=h.cx+r.left,y=h.cy+r.top;if(x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom)return e.dataset.id}return null}
-function handle(s,l){const h=S[s],g=classify(l);h.dwr=0;h.dmv=0;
+function hover(s,old){const h=S[s];if(!h.vis)return null;const r=stage.getBoundingClientRect(),pts=[[h.cx,h.cy]];if(old&&h.hist.length>=8)pts.push(h.hist[0]); // old = position just before the pinch moved the fingertip
+ for(const p of pts)for(const e of document.querySelectorAll('#phone:not([hidden]) .tk,#tbox:not([hidden]) .tl')){const b=e.getBoundingClientRect(),x=p[0]+r.left,y=p[1]+r.top;if(x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom)return e.dataset.id}return null}
+function handle(s,l){const h=S[s],g=classify(l);h.dwr=0;h.dmv=0;h.dmy=0;
  if(g===h.g)h.cnt++;else{h.g=g;h.cnt=1;h.pa=null}
  if(h.cnt>=3&&h.st!==g){h.st=g;h.pa=null;onEdge(s,g)}
  const W=stage.clientWidth,H=stage.clientHeight,tx=(1-l[8].x)*W,ty=l[8].y*H;
  h.cx=h.vis?h.cx+(tx-h.cx)*.5:tx;h.cy=h.vis?h.cy+(ty-h.cy)*.5:ty;h.vis=true;
- const a=Math.atan2(l[9].y-l[0].y,-(l[9].x-l[0].x));
+ const a=Math.atan2(l[17].y-l[5].y,-(l[17].x-l[5].x));
  if(h.pa!==null&&h.st===g){let dA=a-h.pa;if(dA>Math.PI)dA-=2*Math.PI;if(dA<-Math.PI)dA+=2*Math.PI;
   if(g==='fist'){h.wr+=dA*180/Math.PI;h.dwr=dA*180/Math.PI}}
  if(g!=='fist')h.wr=0;h.pa=a;
- if(h.st==='pinch'){if(h.pp)h.dmv=Math.hypot(l[8].x-h.pp[0],l[8].y-h.pp[1]);h.pp=[l[8].x,l[8].y]}else h.pp=null;
+ if(h.st==='pinch'){const mx=(l[4].x+l[8].x)/2,my=(l[4].y+l[8].y)/2;if(h.pp){h.dmv=Math.hypot(mx-h.pp[0],my-h.pp[1]);h.dmy=my-h.pp[1]}h.pp=[mx,my]}else h.pp=null;
+ h.hist.push([h.cx,h.cy]);if(h.hist.length>8)h.hist.shift();
  h.turn=0;if(h.st==='point'){const dx=l[5].x-l[8].x,dy=l[8].y-l[5].y;if(Math.abs(dx)>Math.abs(dy)*1.5&&Math.abs(dx)>.06)h.turn=dx>0?-1:1} // point left/right = turn
  const c=$('c'+s);c.style.display='block';c.style.left=h.cx+'px';c.style.top=h.cy+'px';c.className='cur'+(h.st==='pinch'?' p':'')}
 const ov=$('ov').getContext('2d');
 function processHands(res){
  const hs=res.landmarks.map(l=>({l,x:1-l[0].x})).sort((a,b)=>a.x-b.x),seen=[0,0];
  hs.forEach((h,i)=>{const s=hs.length===2?i:(h.x<.5?0:1);seen[s]=1;handle(s,h.l)});
- [0,1].forEach(s=>{if(!seen[s]){Object.assign(S[s],{dwr:0,dmv:0,pp:null,turn:0,vis:false,g:'none',cnt:0,st:'none',pa:null,wr:0});$('c'+s).style.display='none'}});
+ [0,1].forEach(s=>{if(!seen[s]){Object.assign(S[s],{dmy:0,hist:[],dwr:0,dmv:0,pp:null,turn:0,vis:false,g:'none',cnt:0,st:'none',pa:null,wr:0});$('c'+s).style.display='none'}});
  if(phoneOpen||toolOpen)document.querySelectorAll('.tk,.tl').forEach(e=>e.classList.toggle('hv',[0,1].some(s=>hover(s)===e.dataset.id)));
  if(phoneOpen){const c=S[0].st==='callme'||S[1].st==='callme';if(c)callRel=0;else if(!callRel)callRel=performance.now()}
  ov.clearRect(0,0,640,480);ov.fillStyle='#0f0';res.landmarks.forEach(l=>l.forEach(p=>ov.fillRect(p.x*640-3,p.y*480-3,6,6)));
@@ -266,7 +278,7 @@ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;
  if(running()){tLeft-=dt;nextSpawn-=dt;if(nextSpawn<=0){spawn();nextSpawn=10+Math.random()*20}
   if(tLeft<=0){tLeft=0;endDay()}$('timer').textContent=`${Math.floor(tLeft/60)}:${String(Math.floor(tLeft%60)).padStart(2,'0')}`}
  if(running()&&!phoneOpen&&!toolOpen&&['room','arrived','scene','done'].includes(state))yaw+=Math.max(-1,Math.min(1,S[0].turn+S[1].turn))*1.6*dt;
- cam.rotation.y=yaw;if(running())engine(dt);if(drip.visible)drip.position.y=1.1-((now/400)%1)*.3;R.render(scene,cam);requestAnimationFrame(frame)}
+ cam.rotation.y=yaw;if(running())engine(dt);if(lightTask)fxMat.color.setHex(state==='scene'&&stepI<5?(Math.sin(now/110)>0?0xffe9a0:0x4a4a3a):0xfff6d0);if(drip.visible)drip.position.y=1.1-((now/400)%1)*.3;R.render(scene,cam);requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 
 /* ---------- START ---------- */
