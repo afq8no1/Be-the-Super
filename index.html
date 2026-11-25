@@ -51,7 +51,7 @@ button.on{background:#5ee08a}
  </div>
  <div id="fade"><div id="tip"></div></div><div id="flash"></div>
  <div id="dbgPanel"><div class="vw"><video id="vid" playsinline muted></video><canvas id="ov" width="640" height="480"></canvas></div><pre id="dtxt"></pre></div>
- <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v7</div></div>
+ <div class="panel" id="menu"><h1 id="mTitle"></h1><div id="mSub"></div><div class="lg"></div><button id="startBtn"></button><div id="mMsg" style="font-size:.7em;max-width:70%;line-height:1.8"></div><div style="font-size:.5em;opacity:.6">v8</div></div>
  <div class="panel" id="pause" hidden><h1 id="pTitle"></h1><div class="lg"></div><button id="resBtn"></button><button id="quitBtn"></button></div>
  <div class="panel" id="end" hidden><h1 id="eTitle"></h1><div id="eStats"></div><button id="againBtn"></button></div>
 </div>
@@ -68,13 +68,13 @@ hintRoom:'"Call me" hand = check phone | Point left/right = turn',
 hintArr:'Switch off the power/water first | Thumbs up = SNAP into the room | "Call me" = phone',
 hintScene:'Both open palms together = toolbox | Follow the manual',
 warn:{water:'WARNING: Turn OFF the water valve first!',power:'WARNING: Switch OFF the power at the breaker first!',none:'Wear gloves and work carefully.'},
-note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP',score:'Score',box:'TOOLBOX',tool:'Tool',inHand:'In hand',wrong:'Wrong tool! Need',shutFirst:'Do the shut-off first!',shutOk:'Shut-off done! Thumbs up to snap into the room.',turnBack:'Turn around to the utility box (point left/right)',thanks:'Thank you, Super! All fixed.',hintPhone:'Point + pinch = choose task | "Call me" again = close',hintDone:'"Call me" = next task',hintLook:'Turn toward the resident (point left/right)',act:{cw:'Fist facing camera: twist like a doorknob CLOCKWISE',ccw:'Fist facing camera: twist like a doorknob COUNTER-CLOCKWISE',grab:'Pinch and hold',pull:'Pinch and drag',down:'Pinch and drag DOWN',wait:'Hold on...'}},
+note:'MANUAL',end:'DAY ENDED',fixes:'Fixes done',again:'PLAY AGAIN',tips:'TIP',score:'Score',box:'TOOLBOX',tool:'Tool',inHand:'In hand',wrong:'Wrong tool! Need',shutFirst:'Do the shut-off first!',up:'UP',dn:'DOWN',fine:'This breaker is fine. Test the others.',found:'Found the tripped breaker!',shutOk:'Shut-off done! Thumbs up to snap into the room.',turnBack:'Turn around to the utility box (point left/right)',thanks:'Thank you, Super! All fixed.',hintPhone:'Point + pinch = choose task | "Call me" again = close',hintDone:'"Call me" = next task',hintLook:'Turn toward the resident (point left/right)',act:{cw:'Fist facing camera: twist like a doorknob CLOCKWISE',ccw:'Fist facing camera: twist like a doorknob COUNTER-CLOCKWISE',grab:'Pinch and hold',pull:'Pinch and drag',down:'Pinch and drag DOWN',rub:'Pinch and drag back and forth (up-down / left-right) many times',find:'Pinch each breaker to test it. Find the tripped one',flip:'Pinch and flip the switch',wait:'Hold on...'}},
 ms:{title:'SUPER FIXER',sub:'Baiki bangunan. Belajar sambil bekerja.',start:'MULAKAN HARI',pause:'JEDA',resume:'SAMBUNG',quit:'TAMAT HARI',paused:'DIJEDA',load:'Memuatkan penjejakan tangan...',camErr:'Kamera tidak tersedia. Benarkan akses kamera (HTTPS atau localhost) dan muat semula.',phone:'TUGASAN',floor:'Tingkat',none:'Belum ada tugasan...',
 hintRoom:'Tangan "call me" = semak telefon | Tunjuk kiri/kanan = berpusing',
 hintArr:'Matikan suis/air dahulu | Ibu jari ke atas = PETIK JARI masuk bilik | "Call me" = telefon',
 hintScene:'Kedua-dua tapak tangan terbuka bersama = kotak alat | Ikut manual',
 warn:{water:'AMARAN: Matikan injap air dahulu!',power:'AMARAN: Matikan bekalan elektrik di pemutus litar dahulu!',none:'Pakai sarung tangan dan berhati-hati.'},
-note:'MANUAL',end:'HARI TAMAT',fixes:'Pembaikan siap',again:'MAIN SEMULA',tips:'TIP',score:'Skor',box:'KOTAK ALAT',tool:'Alat',inHand:'Di tangan',wrong:'Alat salah! Perlu',shutFirst:'Matikan dahulu!',shutOk:'Selesai dimatikan! Ibu jari ke atas untuk petik jari masuk bilik.',turnBack:'Berpusing ke kotak utiliti (tunjuk kiri/kanan)',thanks:'Terima kasih, Super! Dah siap dibaiki.',hintPhone:'Tunjuk + cubit = pilih tugasan | "Call me" lagi = tutup',hintDone:'"Call me" = tugasan seterusnya',hintLook:'Pandang penghuni (tunjuk kiri/kanan)',act:{cw:'Penumbuk ke kamera: pulas seperti tombol pintu IKUT JAM',ccw:'Penumbuk ke kamera: pulas seperti tombol pintu LAWAN JAM',grab:'Cubit dan tahan',pull:'Cubit dan seret',down:'Cubit dan seret ke BAWAH',wait:'Tunggu...'}}};
+note:'MANUAL',end:'HARI TAMAT',fixes:'Pembaikan siap',again:'MAIN SEMULA',tips:'TIP',score:'Skor',box:'KOTAK ALAT',tool:'Alat',inHand:'Di tangan',wrong:'Alat salah! Perlu',shutFirst:'Matikan dahulu!',up:'ATAS',dn:'BAWAH',fine:'Pemutus ini elok. Uji yang lain.',found:'Jumpa pemutus yang tersentak!',shutOk:'Selesai dimatikan! Ibu jari ke atas untuk petik jari masuk bilik.',turnBack:'Berpusing ke kotak utiliti (tunjuk kiri/kanan)',thanks:'Terima kasih, Super! Dah siap dibaiki.',hintPhone:'Tunjuk + cubit = pilih tugasan | "Call me" lagi = tutup',hintDone:'"Call me" = tugasan seterusnya',hintLook:'Pandang penghuni (tunjuk kiri/kanan)',act:{cw:'Penumbuk ke kamera: pulas seperti tombol pintu IKUT JAM',ccw:'Penumbuk ke kamera: pulas seperti tombol pintu LAWAN JAM',grab:'Cubit dan tahan',pull:'Cubit dan seret',down:'Cubit dan seret ke BAWAH',rub:'Cubit dan seret berulang kali (atas-bawah / kiri-kanan)',find:'Cubit setiap pemutus untuk menguji. Cari yang tersentak',flip:'Cubit dan petik suis',wait:'Tunggu...'}}};
 const TASKS=[
 {w:2,shut:'water',en:{t:'Leaky tap',s:['Turn off the water valve','Unscrew the tap handle (screwdriver)','Replace the worn washer','Reassemble, tighten with wrench','Open valve, check for drips']},
  ms:{t:'Paip bocor',s:['Matikan injap air','Buka pemegang paip (pemutar skru)','Ganti washer yang haus','Pasang semula, ketatkan dengan sepana','Buka injap, periksa titisan']}},
@@ -98,7 +98,7 @@ const t=k=>UI[lang][k];
 /* ---------- 3D (low-res for pixel look) ---------- */
 const R=new THREE.WebGLRenderer({antialias:false});R.setSize(320,180,false);R.domElement.className='game';stage.prepend(R.domElement);
 const cam=new THREE.PerspectiveCamera(70,16/9,.1,50),scene=new THREE.Scene();scene.background=new THREE.Color(0x1a1a28);
-scene.add(new THREE.AmbientLight(0xffffff,.85));const pl=new THREE.PointLight(0xffe8b0,1.2,16);pl.position.set(0,2.8,0);scene.add(pl);
+const amb=new THREE.AmbientLight(0xffffff,.85);scene.add(amb);const pl=new THREE.PointLight(0xffe8b0,1.2,16);pl.position.set(0,2.8,0);scene.add(pl);
 const mats={},M=c=>mats[c]||(mats[c]=new THREE.MeshLambertMaterial({color:c}));
 const box=(p,w,h,d,c,x,y,z)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),M(c));m.position.set(x,y,z);p.add(m);return m};
 const room=new THREE.Group(),hall=new THREE.Group();scene.add(room,hall);
@@ -111,8 +111,14 @@ box(room,1.6,.4,2.4,0x5a3a2a,-2,.2,-1.6);box(room,1.5,.2,2.3,0x4a6fa5,-2,.5,-1.6
 box(room,1.6,.1,.8,0x9a7448,2.1,.8,-2.4);box(room,.1,.8,.7,0x7a5a38,1.4,.4,-2.4);box(room,.1,.8,.7,0x7a5a38,2.8,.4,-2.4);
 const ph=box(room,.25,.04,.45,0x111111,1.9,.87,-2.4);box(room,.5,.9,.1,0x3d6b3d,2.1,1.9,-2.9);
 const prob=new THREE.Group();room.add(prob);
-const fx=box(prob,.9,.7,.3,0x778899,1,1.5,-2.8),led=new THREE.Mesh(new THREE.BoxGeometry(.2,.2,.1),new THREE.MeshBasicMaterial({color:0xff3030}));led.position.set(1,2,-2.62);prob.add(led);const fxMat=new THREE.MeshLambertMaterial({color:0x778899});fx.material=fxMat;let lightTask=false;
+const fx=box(prob,.9,.7,.3,0x778899,1,1.5,-2.8),led=new THREE.Mesh(new THREE.BoxGeometry(.2,.2,.1),new THREE.MeshBasicMaterial({color:0xff3030}));led.position.set(1,2,-2.62);prob.add(led);const fxMat=new THREE.MeshLambertMaterial({color:0x778899});fx.material=fxMat;let lightTask=false,lightOn=false;
 const drip=box(prob,.08,.12,.08,0x44aaff,1,1.1,-2.6);
+const v3=new THREE.Vector3();
+const bp=new THREE.Group();prob.add(bp);box(bp,1.3,1,.15,0x888888,1,1.5,-2.8);box(bp,1.15,.85,.04,0x2a2a33,1,1.5,-2.72);
+const sw=[];for(const y of[1.7,1.3])for(const dx of[-.4,0,.4])sw.push(box(bp,.2,.32,.08,0x30c050,1+dx,y+.04,-2.66));
+let trip=0;const setSw=(i,up)=>{sw[i].position.y=(i<3?1.7:1.3)+(up?.04:-.06);sw[i].material=M(up?0x30c050:0xd03030)};
+const ws=new THREE.Group();prob.add(ws);box(ws,.26,.4,.04,0xeeeeee,-1.4,1.3,-2.88);const tog=box(ws,.1,.16,.06,0x333333,-1.4,1.3,-2.84);
+const setLight=on=>{lightOn=on;tog.position.y=on?1.36:1.24};
 const npc=new THREE.Group();room.add(npc);box(npc,.45,.55,.28,0xc04060,0,.8,0);box(npc,.36,.36,.36,0xe0b090,0,1.28,0);box(npc,.15,.55,.18,0x334455,-.12,.28,0);box(npc,.15,.55,.18,0x334455,.12,.28,0);npc.position.set(-1.8,0,.2);
 prob.visible=false;npc.visible=false;
 // hallway
@@ -164,8 +170,9 @@ async function travel(k){
  setView('hall');tp.textContent='';f.style.opacity=0;await sleep(1200);
  stepI=0;prog=0;inHand=null;state='arrived';renderNote();renderHint()}
 async function snap(){const T=TASKS[picked.type];if(stepI<(T.shut!=='none'?1:0)){say(t('shutFirst'));return}
- state='scene';prog=0;const fl=$('flash');fl.style.opacity=1;await sleep(120);setView('scene');
- const ty=picked.type,li=ty===2||ty===3,tb=ty===3;lightTask=li;
+ state='scene';prog=0;flipSt=0;flipP=0;const fl=$('flash');fl.style.opacity=1;await sleep(120);setView('scene');
+ const ty=picked.type,li=ty===2||ty===3,tb=ty===3;lightTask=li;lightOn=false;setLight(false);ws.visible=li;bp.visible=ty===5;fx.visible=ty!==5;
+ if(ty===5){sw.forEach((m,i)=>setSw(i,true));trip=rnd(6);setSw(trip,false);sw[trip].material=M(0xd08030);say(lang==='en'?'Test each breaker. The tripped one sits lower.':'Uji setiap pemutus. Yang tersentak lebih rendah.',4000)}
  fx.scale.set(tb?1.8:li?.45:1,tb?.22:li?.6:1,li?.8:1);fx.position.set(li?0:1,li?2.6:1.5,-2.8);led.position.set(li?0:1,li?2.25:2,-2.62);
  fxMat.color.set(T.shut==='water'?0x6b8fb0:li?0xffe9a0:T.shut==='power'?0xe0b020:0x9a9a9a);
  if(li)say(lang==='en'?'Look up: the light on the wall is flickering!':'Pandang atas: lampu di dinding berkelip!',4000);
@@ -182,18 +189,18 @@ addEventListener('keydown',e=>{if(e.key==='Escape')state==='paused'?resume():pau
  if(e.key==='r'||e.key==='R'){if(state==='scene'||state==='arrived'){state='room';picked=null;setView('room');renderNote();renderHint()}}});
 
 /* ---------- TASK ENGINE ---------- */
-let stepI=0,prog=0,score=0,looked=false,toolOpen=false,inHand=null,callRel=0,bookPrev=false,cool2=0,sayT=0;
+let stepI=0,prog=0,score=0,looked=false,toolOpen=false,inHand=null,callRel=0,bookPrev=false,cool2=0,sayT=0,flipSt=0,flipP=0;
 const ad=(a,b)=>((a-b+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
 const TN={screwdriver:['Screwdriver','Pemutar skru'],wrench:['Wrench','Sepana'],plier:['Pliers','Playar'],tape:['Repair tape','Pita pembaikan'],bucket:['Bucket','Baldi'],washer:['New washer','Washer baru'],bulb:['New bulb','Mentol baru'],tube:['New tube light','Tiub lampu baru'],tester:['Voltage tester','Penguji voltan'],hammer:['Hammer','Tukul']};
 const tn=k=>k&&k!=='none'&&TN[k]?TN[k][lang==='en'?0:1]:'-';
 // per task, per step 'tool:action' (step 0 of power/water tasks is the shut-off, handled at the utility box)
 const ACTS=[['','screwdriver:ccw300','washer:grab','wrench:cw360','none:ccw270'],
 ['bucket:grab','wrench:ccw300','none:pull','wrench:cw300','none:ccw270'],
-['','none:wait3','none:ccw360','bulb:cw360','none:pull'],
-['','none:ccw90','none:pull','tube:cw90','none:pull'],
-['','none:wait3','tape:cw450','wrench:cw360','none:ccw270'],
-['','none:grab','none:pull','tester:grab','none:wait3'],
-['','tester:grab','plier:pull','plier:cw270','tape:cw450']];
+['','none:wait3','none:ccw360','bulb:cw360','none:flipUDU'],
+['','none:ccw90','none:pull','tube:cw90','none:flipUDU'],
+['','none:wait3','tape:rub','wrench:cw360','none:ccw270'],
+['','none:find','none:flipDU','tester:grab','none:wait3'],
+['','tester:grab','plier:pull','plier:cw270','tape:rub']];
 function say(x,ms=2500){const e=$('say');e.textContent=x;e.hidden=false;clearTimeout(sayT);sayT=setTimeout(()=>e.hidden=true,ms)}
 function renderScore(){$('score').textContent=`${t('fixes')}: ${fixes}   ${t('score')}: ${score}`}
 function renderTools(){$('tbox').innerHTML=`<h3>${t('box')}</h3><div class="tg">`+Object.keys(TN).map(k=>`<div class="tl" data-id="${k}">${tn(k)}</div>`).join('')+'</div>'}
@@ -203,24 +210,34 @@ function pickTool(k){inHand=k;closeTools()}
 function curAct(){if(!picked)return null;const T=TASKS[picked.type];if(stepI>=T.en.s.length)return null;
  if(stepI===0&&T.shut!=='none')return state==='arrived'?{tool:'none',act:T.shut==='water'?'cw360':'down',shut:1}:null;
  if(state!=='scene')return null;const[a,b]=ACTS[picked.type][stepI].split(':');return{tool:a,act:b}}
-function completeStep(){prog=0;stepI++;const T=TASKS[picked.type];
+function completeStep(){prog=0;flipSt=0;flipP=0;stepI++;const T=TASKS[picked.type];
  if(stepI>=T.en.s.length)finishTask();else if(stepI===1&&T.shut!=='none')say(t('shutOk'),4000);
  renderNote();renderHint()}
-function finishTask(){const T=TASKS[picked.type];fixes++;score+=T.w*100;state='done';looked=false;inHand=null;led.material.color.set(0x30ff60);drip.visible=false;renderScore()}
+function finishTask(){const T=TASKS[picked.type];fixes++;score+=T.w*100;state='done';looked=false;inHand=null;led.material.color.set(0x30ff60);drip.visible=false;if(lightTask)setLight(true);renderScore()}
 function actTick(dt){const A=curAct(),box=$('act');
  if(!A||phoneOpen||toolOpen){box.hidden=true;return}
- const m=A.act.match(/^(cw|ccw|grab|pull|down|wait)(\d*)$/),k=m[1],need=k==='grab'?1:k==='pull'?.6:k==='down'?.22:+m[2];
+ const m=A.act.match(/^(cw|ccw|grab|pull|down|wait|rub|find|flip)([A-Z\d]*)$/),k=m[1],pat=m[2];
+ const need=k==='flip'?.12*pat.length:({grab:1,pull:.6,down:.22,rub:3,find:1})[k]??+pat;
  const facing=!A.shut||Math.abs(ad(yaw,Math.PI))<.7,wrong=A.tool!=='none'&&inHand!==A.tool;
- const msg=!facing?t('turnBack'):wrong?`${t('wrong')}: ${tn(A.tool)}`:t('act')[k];
+ let msg=!facing?t('turnBack'):wrong?`${t('wrong')}: ${tn(A.tool)}`:t('act')[k];
+ if(k==='flip'&&facing&&!wrong)msg+=' '+(pat[flipSt]==='U'?t('up'):t('dn'));
  if(facing&&!wrong){let d=0;
   if(k==='cw'||k==='ccw'){for(const h of S)if(h.st==='fist'){const v=(k==='cw'?1:-1)*h.dwr;if(v>1)d+=v*1.3}prog+=d}
   else if(k==='pull'){for(const h of S)if(h.st==='pinch')d+=h.dmv;prog+=d}
+  else if(k==='rub'){for(const h of S)if(h.st==='pinch'&&h.dmv>.004)d+=h.dmv;prog+=d}
   else if(k==='down'){for(const h of S)if(h.st==='pinch')d+=Math.max(0,h.dmy);prog+=d}
+  else if(k==='flip'){for(const h of S)if(h.st==='pinch')d+=pat[flipSt]==='U'?Math.max(0,-h.dmy):Math.max(0,h.dmy);flipP+=d;
+   if(flipP>=.12){flipSt++;flipP=0;const up=pat[flipSt-1]==='U';if(lightTask)setLight(up);else if(picked.type===5)setSw(trip,up)}
+   prog=flipSt*.12+flipP}
   else if(k==='grab'){if(S.some(h=>h.st==='pinch'))prog+=dt}
+  else if(k==='find'){}
   else prog+=dt}
  if(A.shut){if(TASKS[picked.type].shut==='power'){lever.position.y=1.2-.4*Math.min(1,prog/need);if(prog/need>.5)lever.material=M(0xd03030)}else wheel.rotation.z=prog*Math.PI/180}
  box.hidden=false;box.innerHTML=`${TASKS[picked.type][lang].s[stepI]}<br>${t('tool')}: ${tn(A.tool)} | ${t('inHand')}: ${tn(inHand)}<br>${msg}<div class="bar"><i style="width:${Math.min(100,prog/need*100)}%"></i></div>`;
  if(prog>=need)completeStep()}
+function testSwitch(s){const h=S[s],W=stage.clientWidth,H=stage.clientHeight,pts=[[h.cx,h.cy]];if(h.hist.length>=8)pts.push(h.hist[0]);let best=-1,bd=1e9;
+ for(const p of pts)sw.forEach((m,i)=>{v3.copy(m.position).project(cam);const d=Math.hypot((v3.x*.5+.5)*W-p[0],(-v3.y*.5+.5)*H-p[1]);if(d<bd){bd=d;best=i}});
+ if(bd>W*.07)return;if(best===trip){say(t('found'));completeStep()}else say(t('fine'))}
 function engine(dt){actTick(dt);
  if(state==='done'&&!looked&&Math.abs(ad(yaw,.785))<.35){looked=true;say(t('thanks'),6000);renderHint()}}
 
@@ -242,6 +259,7 @@ function onEdge(s,g){const now=performance.now();
   if(!phoneOpen){cool=now+800;callRel=0;openPhone()} else if(callRel&&now-callRel>500){cool=now+800;closePhone()}}
  if(g==='pinch'&&phoneOpen){const k=tickets.find(x=>String(x.id)===hover(s,1));if(k)travel(k)}
  if(g==='pinch'&&toolOpen){const id=hover(s,1);if(id)pickTool(id)}
+ if(g==='pinch'&&state==='scene'&&!phoneOpen&&!toolOpen){const A=curAct();if(A&&A.act==='find')testSwitch(s)}
  if(g==='thumbsup'&&state==='arrived'&&!phoneOpen)snap()}
 function hover(s,old){const h=S[s];if(!h.vis)return null;const r=stage.getBoundingClientRect(),pts=[[h.cx,h.cy]];if(old&&h.hist.length>=8)pts.push(h.hist[0]); // old = position just before the pinch moved the fingertip
  for(const p of pts)for(const e of document.querySelectorAll('#phone:not([hidden]) .tk,#tbox:not([hidden]) .tl')){const b=e.getBoundingClientRect(),x=p[0]+r.left,y=p[1]+r.top;if(x>=b.left&&x<=b.right&&y>=b.top&&y<=b.bottom)return e.dataset.id}return null}
@@ -278,7 +296,7 @@ function frame(now){const dt=Math.min(.1,(now-last)/1000);last=now;
  if(running()){tLeft-=dt;nextSpawn-=dt;if(nextSpawn<=0){spawn();nextSpawn=10+Math.random()*20}
   if(tLeft<=0){tLeft=0;endDay()}$('timer').textContent=`${Math.floor(tLeft/60)}:${String(Math.floor(tLeft%60)).padStart(2,'0')}`}
  if(running()&&!phoneOpen&&!toolOpen&&['room','arrived','scene','done'].includes(state))yaw+=Math.max(-1,Math.min(1,S[0].turn+S[1].turn))*1.6*dt;
- cam.rotation.y=yaw;if(running())engine(dt);if(lightTask)fxMat.color.setHex(state==='scene'&&stepI<5?(Math.sin(now/110)>0?0xffe9a0:0x4a4a3a):0xfff6d0);if(drip.visible)drip.position.y=1.1-((now/400)%1)*.3;R.render(scene,cam);requestAnimationFrame(frame)}
+ cam.rotation.y=yaw;if(running())engine(dt);if(lightTask&&(state==='scene'||state==='done')){const brk=state==='scene'&&stepI<4;fxMat.color.setHex(brk?(Math.sin(now/110)>0?0xffe9a0:0x4a4a3a):lightOn?0xfff6d0:0x3a3a30);amb.intensity=(!brk&&!lightOn)?.35:.85}else amb.intensity=.85;if(drip.visible)drip.position.y=1.1-((now/400)%1)*.3;R.render(scene,cam);requestAnimationFrame(frame)}
 requestAnimationFrame(frame);
 
 /* ---------- START ---------- */
